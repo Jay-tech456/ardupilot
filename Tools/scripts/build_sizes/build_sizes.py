@@ -50,7 +50,7 @@ def firmware_list(basedir):
             if f in LINUX_BINARIES:
                 git_version = os.path.join(root, "git-version.txt")
                 try:
-                    line = open(git_version, 'r').readline()
+                    line = open(git_version, 'r').readline(5_000_000)
                     githash = line.split()[1][:8]
                 except OSError:
                     githash = "unknown"
