@@ -19,6 +19,7 @@ import subprocess
 import csv
 from matplotlib import pyplot as plt
 from argparse import ArgumentParser
+from security import safe_command
 
 
 class DataPoints:
@@ -236,7 +237,7 @@ if __name__ == '__main__':
                 os.mkdir(original_name)
 
             cmd = 'git log -%d --format=format:"%%H"' % (args.head+1)
-            result = subprocess.run([cmd], shell=True, capture_output=True, text=True)
+            result = safe_command.run(subprocess.run, [cmd], shell=True, capture_output=True, text=True)
             git_history = result.stdout.split('\n')
             latest_commit = git_history[0]
             base_commit = git_history[-1]
@@ -245,7 +246,7 @@ if __name__ == '__main__':
 
             # Checkout to a detached head to test the old code before improvements
             cmd = 'git checkout %s' % base_commit
-            result = subprocess.run([cmd], shell=True, capture_output=True, text=True)
+            result = safe_command.run(subprocess.run, [cmd], shell=True, capture_output=True, text=True)
             print('\n%s\n' % cmd)
 
             if result.returncode > 0:
