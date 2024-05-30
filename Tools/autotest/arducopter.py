@@ -8196,7 +8196,7 @@ class AutoTestCopter(vehicle_test_suite.TestSuite):
         self.reboot_sitl()
 
         # ensure log messages present
-        want = set(["XKY0", "XKY1", "NKY0", "NKY1"])
+        want = {"XKY0", "XKY1", "NKY0", "NKY1"}
         still_want = want
         while len(still_want):
             m = dfreader.recv_match(type=want)
@@ -8743,7 +8743,7 @@ class AutoTestCopter(vehicle_test_suite.TestSuite):
 
             # inspect generated log for messages:
             dfreader = self.dfreader_for_current_onboard_log()
-            wanted = set([0, 1, 2])
+            wanted = {0, 1, 2}
             seen_primary_change = False
             while True:
                 m = dfreader.recv_match(type=["GPS", "EV"]) # disarmed

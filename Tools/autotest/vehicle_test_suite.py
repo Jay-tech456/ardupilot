@@ -2156,8 +2156,7 @@ class TestSuite(ABC):
 
     def get_sim_parameter_documentation_get_whitelist(self):
         # common parameters
-        ret = set([
-            "SIM_ACC1_RND",
+        ret = {"SIM_ACC1_RND",
             "SIM_ACC2_RND",
             "SIM_ACC3_RND",
             "SIM_ACC4_RND",
@@ -2444,8 +2443,7 @@ class TestSuite(ABC):
             "SIM_WAVE_LENGTH",
             "SIM_WAVE_SPEED",
             "SIM_WIND_DIR_Z",
-            "SIM_WIND_T",
-        ])
+            "SIM_WIND_T",}
 
         vinfo_key = self.vehicleinfo_key()
         if vinfo_key == "Rover":
@@ -10111,12 +10109,10 @@ Also, ignores heartbeats not from our target system'''
 
         # we should find at least one Armed event and one disarmed
         # event, and at least one ARM message for arm and disarm
-        wants = set([
-            ("Armed EV message",  "EV", lambda e : e.Id == 10),
+        wants = {("Armed EV message",  "EV", lambda e : e.Id == 10),
             ("Disarmed EV message",  "EV", lambda e : e.Id == 11),
             ("Armed ARM message",  "ARM", lambda a : a.ArmState == 1),
-            ("Disarmed ARM message",  "ARM", lambda a : a.ArmState == 0),
-        ])
+            ("Disarmed ARM message",  "ARM", lambda a : a.ArmState == 0),}
 
         dfreader = self.dfreader_for_current_onboard_log()
         types = set()

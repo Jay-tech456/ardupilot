@@ -146,8 +146,7 @@ class SizeCompareBranches(object):
 
         # some boards we don't have a -bl.dat for, so skip them.
         # TODO: find a way to get this information from board_list:
-        self.bootloader_blacklist = set([
-            'CubeOrange-SimOnHardWare',
+        self.bootloader_blacklist = {'CubeOrange-SimOnHardWare',
             'CubeOrangePlus-SimOnHardWare',
             'fmuv2',
             'fmuv3-bdshot',
@@ -164,8 +163,7 @@ class SizeCompareBranches(object):
             'Pixhawk1-bdshot',
             'SITL_arm_linux_gnueabihf',
             'RADIX2HD',
-            'canzero',
-        ])
+            'canzero',}
 
         # blacklist all linux boards for bootloader build:
         self.bootloader_blacklist.update(self.linux_board_names())
