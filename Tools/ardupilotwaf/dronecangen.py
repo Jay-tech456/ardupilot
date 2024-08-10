@@ -10,6 +10,7 @@ import os
 import os.path
 from xml.etree import ElementTree as et
 import subprocess
+from security import safe_command
 
 class dronecangen(Task.Task):
     """generate uavcan header files"""
@@ -36,7 +37,7 @@ class dronecangen(Task.Task):
             else:
                 Logs.warn('dronecangen: cmd=%s ' % str(cmd))
                 # re-run command with stdout visible to see errors
-                subprocess.call(cmd)
+                safe_command.run(subprocess.call, cmd)
                 Logs.error('dronecangen returned {} error code'.format(ret))
         return ret
 
