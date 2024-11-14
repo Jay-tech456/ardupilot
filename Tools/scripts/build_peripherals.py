@@ -13,6 +13,8 @@ import board_list
 
 # get command line arguments
 from argparse import ArgumentParser
+from security import safe_command
+
 parser = ArgumentParser(description='build_peripherals')
 parser.add_argument("pattern", type=str, default='*', help="board wildcard pattern")
 parser.add_argument("--debug", action='store_true', default=False, help="build with debug symbols")
@@ -27,7 +29,7 @@ failed_boards = set()
 
 def run_program(cmd_list):
     print("Running (%s)" % " ".join(cmd_list))
-    retcode = subprocess.call(cmd_list)
+    retcode = safe_command.run(subprocess.call, cmd_list)
     if retcode != 0:
         print("Build failed: %s" % ' '.join(cmd_list))
         return False
