@@ -2812,7 +2812,7 @@ Please run: Tools/scripts/build_bootloaders.py %s
         ret = ""
         with open(defaults_filepath, 'r') as defaults_fh:
             while True:
-                line = defaults_fh.readline()
+                line = defaults_fh.readline(5_000_000)
                 if line == "":
                     break
                 m = re.match(r"^@include\s*([^\s]+)", line)
