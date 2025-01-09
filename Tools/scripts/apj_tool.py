@@ -51,7 +51,7 @@ class embedded_defaults(object):
         f = open(self.filename,'r')
         self.headers = []
         while True:
-            line = f.readline().rstrip()
+            line = f.readline(5_000_000).rstrip()
             if line == '--':
                 break
             self.headers.append(line)
